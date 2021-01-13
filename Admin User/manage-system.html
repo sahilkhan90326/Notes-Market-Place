@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>Home</title>
+    
+        <link rel="stylesheet" href="css/manage-system.css">
+        <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+    </head>
+    <body>
+      
+      <!--Navbar starts-->      
+      <nav class="navbar navbar-expand-lg navbar-light">
+          <div class="container">
+              <a class="navbar-brand" href="#"><img src="images/pre-login/top-logo-color.png" alt="logo"></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="col-auto px-0">
+
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav mr-auto">
+                          <li class="nav-item">
+                              <a class="nav-link" href="#">Dashboard</a>
+                          </li>
+                          <ul class="navbar-nav">
+                              <li class="nav-item dropdown">
+                                  <a href="" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Notes</a>
+                                  <div class="dropdown-menu reports" aria-labelledby="navbarDropdownMenuLink">
+                                      <a class="dropdown-item" href="#">Notes Under Review</a>
+                                      <a class="dropdown-item" href="#">Published Notes</a>
+                                      <a class="dropdown-item" href="#">Downloaded Notes</a>
+                                      <a class="dropdown-item" href="#">Rejected Notes</a>
+                                  </div>
+                              </li>
+                          </ul>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#">Members</a>
+                          </li>
+                          <ul class="navbar-nav">
+                              <li class="nav-item dropdown">
+                                  <a href="" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reports</a>
+                                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                      <a class="dropdown-item" href="#">Spam Reports</a>
+                                  </div>
+                              </li>
+                          </ul>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#">Settings</a>
+                          </li>
+                      </ul>
+                      <ul class="navbar-nav">
+                          <li class="nav-item dropdown">
+                              <a href="" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/Dashboard/user-img.png" alt=""></a>
+                              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                  <a class="dropdown-item" href="#">Update Profile</a>
+                                  <a class="dropdown-item" href="#">Change Password</a>
+                                  <a class="dropdown-item" href="#" id="logout">LOGOUT</a>
+                              </div>
+                          </li>
+                      </ul>
+                      <div class="logout">
+                          <button type="button" class="logout-btn"><span>Logout</span></button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </nav>
+      <!--Navbar ends-->
+      
+        <!--my profile starts-->
+        
+        <section id="myprofile">
+            <div class="content-box-md">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="common-heading">
+                                <h1>Manage System Configuration</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="supportemail">Suport emails address *</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter support email">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="supportphone">Support phone number *</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="Enter phone number">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="otheremail">Email Address(es) (for various events system will send notifications to these users) *</label>
+                                <input type="email" class="form-control" id="otheremail" placeholder="Enter email address">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="facebook">Facebook URL *</label>
+                                <input type="url" class="form-control" id="facebook" placeholder="Enter facebook url">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="twitter">Twitter URL *</label>
+                                <input type="url" class="form-control" id="twitter" placeholder="Enter twitter url">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="linkedin">Linkedin URL *</label>
+                                <input type="url" class="form-control" id="linkedin" placeholder="Enter linkedin url">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="notes">Default image for notes (if seller do not upload)</label>
+                            <div class="form-group text-center">
+                                <div class="upload" id="upfile1">
+                                    <img src="images/Add-notes/upload-file.png">
+                                    <figcaption id="imagetext">Upload a picture</figcaption>
+                                </div>
+                                <input type="file" id="file1" name="jpg" style="display:none">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="notes">Default profile picture (if seller do not upload)</label>
+                            <div class="form-group text-center">
+                                <div class="upload" id="upfile2">
+                                    <img src="images/Add-notes/upload-file.png">
+                                    <figcaption id="imagetext">Upload a picture</figcaption>
+                                </div>
+                                <input type="file" id="file2" name="jpg" style="display:none">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="submit-btn">
+                                <button type="submit" class="submit"><span>SUBMIT</span></button>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        <!--my profile ends-->
+    
+       
+       <!--Footer starts-->
+       <footer>
+           <div class="container">
+               <div class="content-box-xs">
+                   <div class="row">
+                       <div class="col-md-6 my-auto">
+                           <div class="footer">
+                               <p>Version:1.1.24</p>
+                           </div>
+                       </div>
+                       <div class="col-md-6 my-auto">
+                           <div class="footer" style="float: right;">
+                               <p>Copyright &copy; Tatvasoft All rights reserved.</p>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </footer>
+       <!--Footer ends-->
+        
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
+        <script src="js/manage-system.js"></script>
+    </body>
+</html>

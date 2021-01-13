@@ -1,0 +1,162 @@
+html,body{
+    height: 100%
+}
+
+/*content-boxes*/
+
+.content-box-md{
+    padding: 60px 0;
+}
+.content-box-xs{
+    padding: 10px 0;
+}
+.common-heading h1{
+    font-family: "Open Sans",sans-serif;
+    font-size: 34px;
+    line-height: 38px;
+    font-weight: 600;
+    color: #6255a5;
+    margin-bottom: 30px;
+}
+
+/* ===================================
+            navbar
+=================================== */
+.navbar-light{
+    padding: 25px 0 !important;
+    box-shadow: 0 0 30px 0 rgba(0,0,0,0.08);
+}
+.nav-item a{
+    font-family: "Open Sans",sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    color: #333333;
+}
+.nav-link{
+    padding: 0 15px !important;
+}
+.logout-btn:focus{
+    outline: none;
+    border: none;
+}
+.logout{
+    margin-left: 15px;
+}
+.logout-btn{
+    background-color: #6255a5 !important;
+    border: 0;
+    border-radius: 3px;
+    width: 70px;
+    height: 30px;
+}
+.logout-btn span{
+    font-family: "Open Sans",sans-serif;
+    font-size: 16px;
+    color: #fff;
+    line-height: 22px;
+    font-weight: 600;
+}
+.dropdown-menu{
+    left: -75% !important;
+}
+.dropdown-menu a{
+    font-family: "Open Sans",sans-serif;
+    font-size: 14px;
+    color: #333333;
+    line-height: 18px;
+    font-weight: 400;
+}
+#logout{
+    color: #6255a5;
+    font-weight: 600;
+}
+.dropdown-menu a:hover,
+#logout:hover{
+    background-color: #6255a5;
+    color: #fff;
+}
+.active a{
+    color: #6255a5 !important;
+}
+.active a:after{
+    content: ""; /* This is necessary for the pseudo element to work. */ 
+    display: block; /* This will put the pseudo element on its own line. */
+    margin: 0 auto; /* This will center the border. */
+    width: 90%; /* Change this to whatever width you want. */
+    padding-top: 5px; /* This creates some space between the element and the border. */
+    border-bottom: 3px solid #6255a5; /* This creates the border. Replace black with whatever color you want. */
+}
+
+/* ===================================
+            my profile
+=================================== */
+label{
+    font-family: "Open Sans",sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #333333;
+}
+input[type=text]{
+    border: 1px solid #d1d1d1;
+    height: 50px;
+    border-radius: 3px;
+}
+button{
+    background-color: #6255a5 !important;
+    border: 0;
+    border-radius: 3px;
+}
+.submit{
+    font-style: "Open Sans",sans-serif;
+    width: 150px;
+    height: 50px;
+    border-radius: 3px;
+    margin-top: 15px;
+    border: 0;
+    border-color: #fff !important;
+    text-transform: uppercase;
+}
+.submit span{
+    font-weight: 600;
+    color: #fff;
+}
+::placeholder{
+    font-family: "Open Sans",sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #8a8a8a;
+}
+.submit{
+    background-color: #6255a5 !important;
+    border: 0;
+    border-radius: 3px;
+    width: 130px;
+    height: 40px;
+}
+.submit span{
+    font-family: "Open Sans",sans-serif;
+    font-size: 18px;
+    color: #fff !important;
+    line-height: 22px;
+    font-weight: 700;
+}
+
+/* ===================================
+            Footer
+=================================== */
+footer{
+    border-top: 2px solid #f4f4f4;
+}
+.footer{
+    font-family: "Open Sans",sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    color: #333333;
+}
+.footer p{
+    margin: 0;
+}

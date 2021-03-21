@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <!--Title-->
-        <title>Dashboard</title>
+        <title>Member Details</title>
 
         <!--Meta tags-->
         <meta charset="utf-8">
@@ -49,7 +49,7 @@
 
                     <div id="mobile-nav-content">
                         <ul class="navbar-nav">
-                            <li><a href="dashboard.html" class="link active">Dashboard</a></li>
+                            <li><a href="dashboard.html" class="link">Dashboard</a></li>
                             <li class="dropdown">
                                 <a class="dropbtn">
                                     Notes
@@ -100,7 +100,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
                     <ul class="navbar-nav ml-auto">
-                        <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
                         <li class="dropdown">
                             <a href="#" style="border: none;" class="dropdown-toggle" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Notes</a>
                         
@@ -145,92 +145,97 @@
             </div>
         </nav>
         <!--Navbar Ends-->
-
-        <!-- Stats -->
-        <div id="dashboard-admin" class="box">
+        
+        <!-- Member details -->
+        <div id="member-details" class="box">
             <div class="container-fluid">
+
                 <div class="row">
                     <div class="col-md-12">
-                        <h2>Dashboard</h2>
+                        <h2>Member Details</h2>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4 col-6">
-                        <div class="dashboard-item">
-                            <div>
-                                <h4>20</h4>
-                                <h6>Number of Notes in Review for Publish</h6>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="col-md-12 member-box" style="display: flex;">
+                        <img src="images/front/member.png" alt="member image">
+                        
+                        <div class="member-box-inner" style="display: flex;">
+                            <!-- Member details -->
+                            <div class="col-lg-6 col-md-7 col-12">
+                                <div class="row" id="text-left">
 
-                    <div class="col-md-4 col-6">
-                        <div class="dashboard-item">
-                            <div>
-                                <h4>103</h4>
-                                <h6>Number of New Notes Downloaded (Last 7 days)</h6>
-                            </div>
-                        </div>
-                    </div>
+                                    <div class="label col-5">First Name:</div>      
+                                    <div class="col-7 data">Richard</div>
+                                    
+                                    <div class="label col-5">Last Name:</div>      
+                                    <div class="col-7 data">Brown</div>
+                                    
+                                    <div class="label col-5">Email:</div>      
+                                    <div class="col-7 data">richardbrown77@gmail.com</div>
 
-                    <div class="col-md-4 col-12">
-                        <div class="dashboard-item">
-                            <div>
-                                <h4>223</h4>
-                                <h6>Number of New Registrations (Last 7 days)</h6>
+                                    <div class="label col-5">DOB:</div>      
+                                    <div class="col-7 data">13-08-1990</div>
+
+                                    <div class="label col-5">Phone Number:</div>      
+                                    <div class="col-7 data">9988731221</div>
+
+                                    <div class="label col-5">College/University:</div>      
+                                    <div class="col-7 data">University of California</div>
+
+                                </div>
                             </div>
-                        </div>
+
+                            <div class="col-lg-6 col-md-5 col-12">
+                                <div class="row pl-4" id="text-right">
+
+                                    <div class="col-lg-4 col-5 label">Address 1:</div>      
+                                    <div class="col-7 data">144-Diamond Height</div>
+                                    
+                                    <div class="col-lg-4 col-5 label">Address 2:</div>      
+                                    <div class="col-7 data">Star Colony</div>
+                                    
+                                    <div class="col-lg-4 col-5 label">City:</div>      
+                                    <div class="col-7 data">New York</div>
+
+                                    <div class="col-lg-4 col-5 label">State:</div>      
+                                    <div class="col-7 data">New York State</div>
+
+                                    <div class="col-lg-4 col-5 label">Country:</div>      
+                                    <div class="col-7 data">United State</div>
+
+                                    <div class="col-lg-4 col-5 label">Zip Code:</div>      
+                                    <div class="col-7 data">11004-05</div>
+
+                                </div>
+                            </div>
+                    </div>
                     </div>
                 </div>
-
             </div>
-        </div> 
-        <!-- Stats Ends -->
+        </div>
+        <!-- Member details Ends-->
 
-        <!-- Published Notes table -->
+        <!-- member's Notes table -->
         <div class="admin-table box">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-6 col-md-4 col-12">
-                        <h2>Published Notes</h2>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-8 text-right">
-                        <div class="row">
-                            <div class="col-8">
-                                <input type="text" class="search" id="published-search" placeholder="Search">
-                            </div>
-
-                            <div class="col-4 pl-0">
-                                <button class="search-button" id="published-search-btn">Search</button>
-                            </div>
-                        </div>
-                        
-                        
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-4 pl-0">
-                        <select class="form-control">
-                            <option selected disabled hidden>Select month</option>
-                            <option>January</option>
-                            <option>February</option>
-                            <option>March</option> 
-                        </select>
-                        <img src="images/User-Profile/down-arrow.png" class="arrow-select">
+                    <div class="col-md-12">
+                        <h2 class="mb-4">Notes</h2>
                     </div>
                 </div>
 
-                <table id="published-notes-table" class="datatable display nowrap" style="width: 100%;">
+                <table id="members-notes-table" class="datatable display nowrap" style="width: 100%;">
                     <thead>
                         <tr>
                             <th class="text-center">Sr No.</th>
-                            <th>Title</th>
+                            <th>Note Title</th>
                             <th>Category</th>
-                            <th class="text-center">Attachment size</th>
-                            <th class="text-center">sell Type</th>
-                            <th>Price</th>
-                            <th>Publisher</th>
-                            <th>Published date</th>
-                            <th class="text-center">Number of Downloads</th>
+                            <th>Status</th>
+                            <th class="text-center">Downloaded notes</th>
+                            <th class="text-center">Total Earnings</th>
+                            <th>Date Added</th>
+                            <th>Published Date</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -238,14 +243,13 @@
                     <tbody>
                         <tr>
                             <td class="text-center">1</td>
-                            <td>Data Science</td>
-                            <td>Science</td>
-                            <td class="text-center">10 KB</td>
-                            <td class="text-center">Paid</td>
-                            <td>$250</td>
-                            <td>Pritesh Panchal</td>
+                            <td class="color-text">Software Development</td>
+                            <td>IT</td>
+                            <td>Published</td>
+                            <td class="text-center color-text">22</td>
+                            <td class="text-center">$250</td>
                             <td>09-10-2020, 10:10</td>
-                            <td class="text-center">10</td>
+                            <td>09-10-2020, 10:10</td>
                             <td>
                                 <span class="profile-table-icons">
                                     <span class="dropdown">
@@ -253,8 +257,6 @@
                                     
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
                                             <a class="dropdown-item" href="#">Download Notes</a>
-                                            <a class="dropdown-item" href="#">View More Details</a>
-                                            <a class="dropdown-item" href="#">Unpublish</a>
                                         </div>
                                     </span>
                                 </span>
@@ -262,86 +264,13 @@
                         </tr>
                         <tr>
                             <td class="text-center">2</td>
-                            <td>Accounts</td>
-                            <td>Commerce</td>
-                            <td class="text-center">23 MB</td>
-                            <td class="text-center">Paid</td>
-                            <td>$22</td>
-                            <td>Rahil Shah</td>
+                            <td class="color-text">Computer Basic</td>
+                            <td>Computer</td>
+                            <td>Published</td>
+                            <td class="text-center color-text">4</td>
+                            <td class="text-center">$125</td>
                             <td>10-10-2020, 10:10</td>
-                            <td class="text-center">21</td>
-                            <td>
-                                <span class="profile-table-icons">
-                                    <span class="dropdown">
-                                        <a href="#" class="dropdown-toggle" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/front/dots.png" alt="progile image"></a>
-                                    
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
-                                            <a class="dropdown-item" href="#">Download Note</a>
-                                            <a class="dropdown-item" href="#">View More Details</a>
-                                            <a class="dropdown-item" href="#">Unpublish</a>
-                                        </div>
-                                    </span>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">3</td>
-                            <td>Social Studies</td>
-                            <td>Social</td>
-                            <td class="text-center">3 MB</td>
-                            <td class="text-center">Paid</td>
-                            <td>$56</td>
-                            <td>Anish Patel</td>
-                            <td>11-10-2020, 10:10</td>
-                            <td class="text-center">13</td>
-                            <td>
-                                <span class="profile-table-icons">
-                                    <span class="dropdown">
-                                        <a href="#" class="dropdown-toggle" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/front/dots.png" alt="progile image"></a>
-                                    
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
-                                            <a class="dropdown-item" href="#">Download Note</a>
-                                            <a class="dropdown-item" href="#">View More Details</a>
-                                            <a class="dropdown-item" href="#">Unpublish</a>
-                                        </div>
-                                    </span>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">4</td>
-                            <td>AI</td>
-                            <td>IT</td>
-                            <td class="text-center">1 MB</td>
-                            <td class="text-center">Free</td>
-                            <td>$0</td>
-                            <td>Vijay Vaishnav</td>
-                            <td>12-10-2020, 10:10</td>
-                            <td class="text-center">34</td>
-                            <td>
-                                <span class="profile-table-icons">
-                                    <span class="dropdown">
-                                        <a href="#" class="dropdown-toggle" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/front/dots.png" alt="progile image"></a>
-                                    
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
-                                            <a class="dropdown-item" href="#">Download Note</a>
-                                            <a class="dropdown-item" href="#">View More Details</a>
-                                            <a class="dropdown-item" href="#">Unpublish</a>
-                                        </div>
-                                    </span>
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">5</td>
-                            <td>Data Science</td>
-                            <td>Science</td>
-                            <td class="text-center">10 KB</td>
-                            <td class="text-center">Paid</td>
-                            <td>$250</td>
-                            <td>Pritesh Panchal</td>
-                            <td>14-10-2020, 10:10</td>
-                            <td class="text-center">10</td>
+                            <td>10-10-2020, 10:10</td>
                             <td>
                                 <span class="profile-table-icons">
                                     <span class="dropdown">
@@ -349,8 +278,69 @@
                                     
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
                                             <a class="dropdown-item" href="#">Download Notes</a>
-                                            <a class="dropdown-item" href="#">View More Details</a>
-                                            <a class="dropdown-item" href="#">Unpublish</a>
+                                        </div>
+                                    </span>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">3</td>
+                            <td class="color-text">Human Body</td>
+                            <td>Science</td>
+                            <td>InReview</td>
+                            <td class="text-center color-text">17</td>
+                            <td class="text-center">$978</td>
+                            <td>11-10-2020, 10:10</td>
+                            <td>11-10-2020, 10:10</td>
+                            <td>
+                                <span class="profile-table-icons">
+                                    <span class="dropdown">
+                                        <a href="#" class="dropdown-toggle" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/front/dots.png" alt="progile image"></a>
+                                    
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
+                                            <a class="dropdown-item" href="#">Download Notes</a>
+                                        </div>
+                                    </span>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">4</td>
+                            <td class="color-text">World War 2</td>
+                            <td>History</td>
+                            <td>Published</td>
+                            <td class="text-center color-text">28</td>
+                            <td class="text-center">$15254</td>
+                            <td>12-10-2020, 10:10</td>
+                            <td>12-10-2020, 10:10</td>
+                            <td>
+                                <span class="profile-table-icons">
+                                    <span class="dropdown">
+                                        <a href="#" class="dropdown-toggle" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/front/dots.png" alt="progile image"></a>
+                                    
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
+                                            <a class="dropdown-item" href="#">Download Notes</a>
+                                        </div>
+                                    </span>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">5</td>
+                            <td class="color-text">Accounting</td>
+                            <td>Account</td>
+                            <td>Published</td>
+                            <td class="text-center color-text">0</td>
+                            <td class="text-center">$150</td>
+                            <td>13-10-2020, 10:10</td>
+                            <td>NA</td>
+                            <td>
+                                <span class="profile-table-icons">
+                                    <span class="dropdown">
+                                        <a href="#" class="dropdown-toggle" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/front/dots.png" alt="progile image"></a>
+                                    
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
+                                            <a class="dropdown-item" href="#">Download Notes</a>
                                         </div>
                                     </span>
                                 </span>
@@ -358,23 +348,20 @@
                         </tr>
                         <tr>
                             <td class="text-center">6</td>
-                            <td>Accounts</td>
-                            <td>Commerce</td>
-                            <td class="text-center">23 MB</td>
-                            <td class="text-center">Paid</td>
-                            <td>$22</td>
-                            <td>Rahil Shah</td>
-                            <td>15-10-2020, 10:10</td>
-                            <td class="text-center">21</td>
+                            <td class="color-text">Accounting</td>
+                            <td>Account</td>
+                            <td>Published</td>
+                            <td class="text-center color-text">0</td>
+                            <td class="text-center">$150</td>
+                            <td>13-10-2020, 10:10</td>
+                            <td>NA</td>
                             <td>
                                 <span class="profile-table-icons">
                                     <span class="dropdown">
                                         <a href="#" class="dropdown-toggle" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/front/dots.png" alt="progile image"></a>
                                     
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
-                                            <a class="dropdown-item" href="#">Download Note</a>
-                                            <a class="dropdown-item" href="#">View More Details</a>
-                                            <a class="dropdown-item" href="#">Unpublish</a>
+                                            <a class="dropdown-item" href="#">Download Notes</a>
                                         </div>
                                     </span>
                                 </span>
@@ -382,23 +369,20 @@
                         </tr>
                         <tr>
                             <td class="text-center">7</td>
-                            <td>Social Studies</td>
-                            <td>Social</td>
-                            <td class="text-center">3 MB</td>
-                            <td class="text-center">Paid</td>
-                            <td>$56</td>
-                            <td>Anish Patel</td>
-                            <td>16-10-2020, 10:10</td>
-                            <td class="text-center">13</td>
+                            <td class="color-text">Accounting</td>
+                            <td>Account</td>
+                            <td>Published</td>
+                            <td class="text-center color-text">0</td>
+                            <td class="text-center">$150</td>
+                            <td>13-10-2020, 10:10</td>
+                            <td>NA</td>
                             <td>
                                 <span class="profile-table-icons">
                                     <span class="dropdown">
                                         <a href="#" class="dropdown-toggle" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/front/dots.png" alt="progile image"></a>
                                     
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
-                                            <a class="dropdown-item" href="#">Download Note</a>
-                                            <a class="dropdown-item" href="#">View More Details</a>
-                                            <a class="dropdown-item" href="#">Unpublish</a>
+                                            <a class="dropdown-item" href="#">Download Notes</a>
                                         </div>
                                     </span>
                                 </span>
@@ -406,36 +390,97 @@
                         </tr>
                         <tr>
                             <td class="text-center">8</td>
-                            <td>AI</td>
-                            <td>IT</td>
-                            <td class="text-center">1 MB</td>
-                            <td class="text-center">Free</td>
-                            <td>$0</td>
-                            <td>Vijay Vaishnav</td>
-                            <td>17-10-2020, 10:10</td>
-                            <td class="text-center">34</td>
+                            <td class="color-text">Accounting</td>
+                            <td>Account</td>
+                            <td>Published</td>
+                            <td class="text-center color-text">0</td>
+                            <td class="text-center">$150</td>
+                            <td>13-10-2020, 10:10</td>
+                            <td>NA</td>
                             <td>
                                 <span class="profile-table-icons">
                                     <span class="dropdown">
                                         <a href="#" class="dropdown-toggle" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/front/dots.png" alt="progile image"></a>
                                     
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
-                                            <a class="dropdown-item" href="#">Download Note</a>
-                                            <a class="dropdown-item" href="#">View More Details</a>
-                                            <a class="dropdown-item" href="#">Unpublish</a>
+                                            <a class="dropdown-item" href="#">Download Notes</a>
                                         </div>
                                     </span>
                                 </span>
                             </td>
                         </tr>
+                        <tr>
+                            <td class="text-center">9</td>
+                            <td class="color-text">Accounting</td>
+                            <td>Account</td>
+                            <td>Published</td>
+                            <td class="text-center color-text">0</td>
+                            <td class="text-center">$150</td>
+                            <td>13-10-2020, 10:10</td>
+                            <td>NA</td>
+                            <td>
+                                <span class="profile-table-icons">
+                                    <span class="dropdown">
+                                        <a href="#" class="dropdown-toggle" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/front/dots.png" alt="progile image"></a>
+                                    
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
+                                            <a class="dropdown-item" href="#">Download Notes</a>
+                                        </div>
+                                    </span>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">10</td>
+                            <td class="color-text">Accounting</td>
+                            <td>Account</td>
+                            <td>Published</td>
+                            <td class="text-center color-text">0</td>
+                            <td class="text-center">$150</td>
+                            <td>13-10-2020, 10:10</td>
+                            <td>NA</td>
+                            <td>
+                                <span class="profile-table-icons">
+                                    <span class="dropdown">
+                                        <a href="#" class="dropdown-toggle" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/front/dots.png" alt="progile image"></a>
+                                    
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
+                                            <a class="dropdown-item" href="#">Download Notes</a>
+                                        </div>
+                                    </span>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">11</td>
+                            <td class="color-text">Accounting</td>
+                            <td>Account</td>
+                            <td>Published</td>
+                            <td class="text-center color-text">0</td>
+                            <td class="text-center">$150</td>
+                            <td>13-10-2020, 10:10</td>
+                            <td>NA</td>
+                            <td>
+                                <span class="profile-table-icons">
+                                    <span class="dropdown">
+                                        <a href="#" class="dropdown-toggle" id="profile-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/front/dots.png" alt="progile image"></a>
+                                    
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profile-dropdown">
+                                            <a class="dropdown-item" href="#">Download Notes</a>
+                                        </div>
+                                    </span>
+                                </span>
+                            </td>
+                        </tr>
+                        
                     </tbody>
                 </table>
                 
             </div>
         </div>
         <!-- Published Notes table Ends-->
-       
-        <!-- Footer -->
+        
+         <!-- Footer -->
         <footer class="box">
             <div class="container-fluid">
                 <div class="row">
@@ -456,8 +501,8 @@
         <!--bootstarp js-->
         <script src="js/bootstrap/bootstrap.bundle.min.js"></script>
 
-        <!--Datatable js-->
-        <script src="js/datatable/jquery.dataTables.min.js"></script>
+         <!--Datatable js-->
+         <script src="js/datatable/jquery.dataTables.min.js"></script>
 
         <!--Custom JS-->
         <script src="js/admin_script.js"></script>

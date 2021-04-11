@@ -1,0 +1,75 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace NoteMarketPlace.Models
+{
+    public class MyProgressNotes
+    {
+        public Notes SellerNotes { get; set; }
+        public Categories Category { get; set; }
+        public NotesStatus Status { get; set; }
+        public Downloads downloadnote { get; set; }
+        public Users u { get; set; }
+        public UsersProfile userprofile { get; set; }
+        public Country country { get; set; }
+        public Type types { get; set; }
+
+        public SellerNoteAttachment noteattach { get; set; }
+
+        public UserRoles role { get; set; }
+
+        public Reference refer { get; set; }
+
+
+    }
+    public class MyPublishNotes
+    {
+        public Notes SellerNotes { get; set; }
+        public Categories Category { get; set; }
+    }
+
+    public class nd
+    {
+        public Notes note { get; set; }
+        public Categories Category { get; set; }
+        public Country contryname { get; set; }
+    }
+
+    /* public class countrytable
+     {
+         public Notes note { get; set; }
+         public Country c { get; set; }
+     } */
+
+
+    public class userprofiledata
+    {
+        public Notes note { get; set; }
+        public Users u { get; set; }
+        public UsersProfile upd { get; set; }
+    }
+
+    public class reviewtable
+    {
+        public Notes note { get; set; }
+        public UsersReviews notereview { get; set; }
+        public Users usr { get; set; }
+    }
+    public class spamtable
+    {
+        public Notes note { get; set; }
+        public SpamReports spamrpt { get; set; }
+    }
+    public class typeuser
+    {
+        public Type types { get; set; }
+        public Categories categorydata { get; set; }
+        public Country countrydata { get; set; }
+        public Users user { get; set; }
+    }
+
+}
+
+

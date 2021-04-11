@@ -1,0 +1,600 @@
+﻿using System;
+using System.Web.Mvc;
+using System.Web.Security;
+using System.Net;
+using System.Net.Mail;
+using System.Text;
+using NoteMarketPlace.Models;
+using System.Linq;
+using NoteMarketPlace.EmailTemplates;
+using System.IO;
+using System.Web;
+using System.Data.Entity.Validation;
+using System.IO.Compression;
+using System.Collections.Generic;
+using PagedList.Mvc;
+using PagedList;
+
+namespace NoteMarketPlace.Controllers
+{
+    public class AdminController : Controller
+    {
+        // GET: Admin
+        public ActionResult addadministrator()
+        {
+            return View();
+        }
+        public ActionResult addCategory()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult addCategory(AddCategory ac)
+        {
+
+            if (ModelState.IsValid)
+            {
+                using (NotesMarketPlaceEntities DBobj = new NotesMarketPlaceEntities())
+                {
+                    int id = (int)Session["UserID"];
+                    Categories cat = new Categories();
+                    cat.CategoryName = ac.CategoryName;
+                    cat.Description = ac.CategoryDescription;
+                    cat.CreatedDate = DateTime.Now;
+                    cat.CreatedBy = id;
+                    cat.ModifiedDate = DateTime.Now;
+                    cat.ModifiedBy = id;
+                    cat.IsActive = true;
+                }
+            }
+            return View();
+        }
+        public ActionResult addCountry()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult addCountry(AddCountry acn)
+        {
+
+            if (ModelState.IsValid)
+            {
+                using (NotesMarketPlaceEntities DBobj = new NotesMarketPlaceEntities())
+                {
+                    int id = (int)Session["UserID"];
+                    Country cn = new Country();
+                    cn.CountryName = acn.CountryName;
+                    cn.CountryCode = acn.CountryCode;
+                    cn.CreatedDate = DateTime.Now;
+                    cn.CreatedBy = id;
+                    cn.ModifiedDate = DateTime.Now;
+                    cn.ModifiedBy = id;
+                    cn.IsActive = true;
+                }
+            }
+            return View();
+        }
+        public ActionResult addType()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult addType(AddType at)
+        {
+
+            if (ModelState.IsValid)
+            {
+                using (NotesMarketPlaceEntities DBobj = new NotesMarketPlaceEntities())
+                {
+                    int id = (int)Session["UserID"];
+                    Models.Type tp = new Models.Type();
+                    tp.TypeName = at.TypeName;
+                    tp.Description = at.TypeDescription;
+                    tp.CreatedDate = DateTime.Now;
+                    tp.CreatedBy = id;
+                    tp.ModifiedDate = DateTime.Now;
+                    tp.ModifiedBy = id;
+                    tp.IsActive = true;
+
+
+                }
+            }
+            return View();
+        }
+        public ActionResult changepassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult changePassword(ChangePassword cp)
+        {
+            if (ModelState.IsValid)
+            {
+                using (NotesMarketPlaceEntities DBobj = new NotesMarketPlaceEntities())
+                {
+                    int id = (int)Session["UserID"];
+                    Users u = DBobj.Users.Where(x => x.UserID == id).FirstOrDefault();
+                    if (u.Password == cp.OldPassword)
+                    {
+                        u.Password = cp.NewPassword;
+                        DBobj.SaveChanges();
+                        ViewBag.PassMessage = "<p><span><i class='fas fa-check-circle'></i></span> Your Password has been Changed successfully</p>";
+                        return RedirectToAction("login", "Admin");
+                    }
+
+                }
+            }
+            return View();
+        }
+        public ActionResult dashboard()
+        {
+            using (NotesMarketPlaceEntities DBobj = new NotesMarketPlaceEntities())
+            {
+                DateTime EndDate = DateTime.Now.Date;
+                DateTime StartDate = DateTime.Now.Date.AddDays(-27);
+                ViewBag.notesInReview = DBobj.Notes.Where(x => x.Status == 4).Count();
+                ViewBag.newDownloads = DBobj.Downloads.Where(x => x.CreatedDate >= StartDate && StartDate < EndDate).Count();
+                ViewBag.newRegisterations = DBobj.Users.Where(x => x.CreatedDate >= StartDate && StartDate < EndDate).Count();
+                var Category = DBobj.Categories.ToList();
+                List<Notes> PublishedNote = null;
+                PublishedNote = DBobj.Notes.Where(x => x.Status == 2).ToList();
+                var PublishedNotes = (from sell in PublishedNote
+                                      join cate in Category on sell.NotesCategory equals cate.CategoryID into table1
+                                      from cate in table1.ToList()
+                                      select new MyPublishNotes
+                                      {
+                                          SellerNotes = sell,
+                                          Category = cate,
+
+                                      }).ToList();
+                ViewBag.publishedNote = PublishedNotes;
+
+
+
+                DBobj.Configuration.LazyLoadingEnabled = false;
+
+                var publish = (from n in DBobj.Notes
+                               join us in DBobj.Users on n.SellerID equals us.UserID
+                               where n.Status == 2
+                               join cat in DBobj.Categories on n.NotesCategory equals cat.CategoryID
+                               join usr in DBobj.Users on n.SellerID equals usr.UserID
+                               join st in DBobj.NotesStatus on n.Status equals st.StatusID
+                               join nat in DBobj.SellerNoteAttachment on n.NoteID equals nat.NoteID
+                               select new MyProgressNotes
+                               {
+                                   SellerNotes = n,
+                                   Category = cat,
+                                   u = usr,
+                                   Status = st,
+                                   noteattach = nat
+                               }).ToList();
+                ViewBag.publishNotes = publish;
+                ViewBag.publishNotesCount = publish.Count();
+
+                var numberofdownloads = (from n in DBobj.Notes
+                                         join d in DBobj.Downloads on n.NoteID equals d.NoteID
+                                         where n.Status == 2
+                                         join cat in DBobj.Categories on n.NotesCategory equals cat.CategoryID
+                                         join usr in DBobj.Users on n.SellerID equals usr.UserID
+                                         join st in DBobj.NotesStatus on n.Status equals st.StatusID
+                                         select new MyProgressNotes
+                                         {
+                                             SellerNotes = n,
+                                             Category = cat,
+                                             u = usr,
+                                             Status = st
+
+                                         }).ToList();
+                ViewBag.DownloadPublishedNotesCount = numberofdownloads.Count();
+
+
+                return View();
+            }
+
+        }
+        public ActionResult downloadednotes()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        public ActionResult forgot()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult forgot(Users model)
+        {
+            using (NotesMarketPlaceEntities DBobj = new NotesMarketPlaceEntities())
+            {
+                string allowedChars = "";
+                string passwordString = "";
+                string temp = "";
+
+                bool isValid = DBobj.Users.Any(x => x.EmailId == model.EmailId);
+                if (isValid)
+                {
+                    Users u = DBobj.Users.Where(x => x.EmailId == model.EmailId).FirstOrDefault();
+                    allowedChars = "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z,";
+                    allowedChars += "A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,";
+                    allowedChars += "1,2,3,4,5,6,7,8,9,0,!,@,#,$,%,&,?";
+
+                    char[] sep = { ',' };
+                    string[] arr = allowedChars.Split(sep);
+                    Random rand = new Random();
+
+                    for (int i = 0; i < 6; i++)
+
+                    {
+                        temp = arr[rand.Next(0, arr.Length)];
+                        passwordString += temp;
+                    }
+
+                    //  Save Password
+                    u.Password = passwordString;
+                    DBobj.SaveChanges();
+
+                    //Sending new password on mail
+                    ForgotEmail.SendOtpToEmail(u, passwordString);
+
+                    TempData["SuccessMessage"] = "<p>New password sent to your registered email-address</p>";
+                    return RedirectToAction("login", "Admin");
+                }
+                return View();
+            }
+        }
+        [AllowAnonymous]
+        public ActionResult login()
+        {
+            return View();
+        }
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult login(Users model)
+        {
+
+            try
+            {
+
+                if (ModelState.IsValid)
+                {
+                    using (NotesMarketPlaceEntities DBobj = new NotesMarketPlaceEntities())
+                    {
+
+
+                        bool isValid = DBobj.Users.Any(x => x.EmailId == model.EmailId && x.Password == model.Password && x.RoleID == 1003);
+                        if (isValid)
+                        {
+                            if (DBobj.Users.Any(x => x.EmailId == model.EmailId && x.IsEmailVerified == true))
+                            {
+                                FormsAuthentication.SetAuthCookie(model.EmailId, false);
+                                Session["EmailID"] = model.EmailId;
+                                var namedata = DBobj.Users.Where(x => x.EmailId == model.EmailId).FirstOrDefault();
+                                Session["FirstName"] = namedata.FirstName;
+                                Session["LastName"] = namedata.LastName;
+                                Session["FullName"] = namedata.FirstName + " " + namedata.LastName;
+                                Session["UserID"] = namedata.UserID;
+
+                                return RedirectToAction("dashboard", "Admin");
+
+                            }
+                            else
+                            {
+                                TempData["Message"] = "<p>Your email is not verified, Please verify it..!</p>";
+                            }
+
+                        }
+                        else
+                        {
+                            TempData["incorrectPass"] = "<p>The password that you've entered is incorrect </p>";
+                            ViewBag.incorrectPass = "<p>The password that you've entered is incorrect </p>";
+                            return View();
+                        }
+
+                    }
+                    return View();
+                }
+                return View();
+            }
+            catch (Exception e)
+            {
+                return View();
+            }
+        }
+
+        //GET: Logout
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("login");
+        }
+        public ActionResult manageType()
+        {
+            using (NotesMarketPlaceEntities DBobj = new NotesMarketPlaceEntities())
+            {
+                DBobj.Configuration.LazyLoadingEnabled = false;
+                int id = (int)Session["UserID"];
+
+
+                var typemanage = (from t in DBobj.Type
+                                  join usr in DBobj.Users on t.CreatedBy equals usr.UserID
+                                  where usr.RoleID == 1003
+                                  select new MyProgressNotes
+                                  {
+                                      types = t,
+                                      u = usr
+
+                                  }).ToList();
+                ViewBag.typemanagement = typemanage;
+                ViewBag.typemanagementCount = typemanage.Count();
+                return View();
+            }
+        }
+        public ActionResult manageadministrator()
+        {
+            return View();
+        }
+        public ActionResult manageCategory()
+        {
+            using (NotesMarketPlaceEntities DBobj = new NotesMarketPlaceEntities())
+            {
+                DBobj.Configuration.LazyLoadingEnabled = false;
+                int id = (int)Session["UserID"];
+
+
+                var categorymanage = (from cat in DBobj.Categories
+                                      join usr in DBobj.Users on cat.CreatedBy equals usr.UserID
+                                      where usr.RoleID == 1003
+                                      select new MyProgressNotes
+                                      {
+                                          Category = cat,
+                                          u = usr
+
+                                      }).ToList();
+                ViewBag.categorymanagement = categorymanage;
+                ViewBag.categorymanagementCount = categorymanage.Count();
+                return View();
+            }
+
+        }
+        public ActionResult manageCountry()
+        {
+            using (NotesMarketPlaceEntities DBobj = new NotesMarketPlaceEntities())
+            {
+                DBobj.Configuration.LazyLoadingEnabled = false;
+                int id = (int)Session["UserID"];
+
+
+                var countrymanage = (from cn in DBobj.Country
+                                     join usr in DBobj.Users on cn.CreatedBy equals usr.UserID
+                                     where usr.RoleID == 1003
+                                     select new MyProgressNotes
+                                     {
+                                         country = cn,
+                                         u = usr
+
+                                     }).ToList();
+                ViewBag.countrymanagement = countrymanage;
+                ViewBag.countrymanagementCount = countrymanage.Count();
+                return View();
+            }
+        }
+        public ActionResult managesystemconfiguration()
+        {
+            return View();
+        }
+        public ActionResult memberdetails(int? id)
+        { 
+            using(NotesMarketPlaceEntities DBobj = new NotesMarketPlaceEntities())
+            {
+                var profileInformation = DBobj.UsersProfile.ToList();
+            return View();
+            }
+        }
+        public ActionResult members()
+        {
+            using (NotesMarketPlaceEntities DBobj = new NotesMarketPlaceEntities())
+            {
+                DBobj.Configuration.LazyLoadingEnabled = false;
+                int id = (int)Session["UserID"];
+
+
+                var members = (from nn in DBobj.Notes
+                                     join us in DBobj.Users on nn.SellerID equals us.UserID
+                                     where us.RoleID == 1005 
+                                     select new MyProgressNotes
+                                     {
+                                         u = us,
+                                         SellerNotes =nn
+
+                                     }).ToList().Distinct();
+                ViewBag.allMembers = members;
+                ViewBag.allMembersCount = members.Count();
+
+                var UnderReview = (from us in DBobj.Users
+                               join nn in DBobj.Notes on us.UserID equals nn.SellerID
+                               where us.RoleID == 1005 && nn.Status==4
+                               select new MyProgressNotes
+                               {
+                                   u = us,
+                                   SellerNotes = nn
+
+                               }).ToList().Distinct();
+                ViewBag.UnderReviewCount = UnderReview.Count();
+
+                var Published = (from us in DBobj.Users
+                                   join nn in DBobj.Notes on us.UserID equals nn.SellerID
+                                   where us.RoleID == 1005 && nn.Status == 2
+                                   select new MyProgressNotes
+                                   {
+                                       u = us,
+                                       SellerNotes = nn
+
+                                   }).ToList().Distinct();
+                ViewBag.PublishedCount = Published.Count();
+
+                var downloads = (from us in DBobj.Users
+                                 join dd in DBobj.Downloads on us.UserID equals dd.Downloader
+                                 where us.RoleID == 1005
+                                 select new MyProgressNotes
+                                 {
+                                   u = us,
+                                   downloadnote = dd
+
+                                 }).ToList().Distinct();
+                ViewBag.allDownloads = members;
+                ViewBag.DownloadsCount = members.Count();
+
+                var expense = (from us in DBobj.Users
+                                join d in DBobj.Downloads on us.UserID equals d.Downloader
+                                where us.RoleID == 1005 && d.SellFor == "Paid"
+                                select d.PurchasedPrice).Distinct().Sum();
+                ViewBag.TotalExpense = expense;
+
+                var earnings = (from us in DBobj.Users
+                                join d in DBobj.Downloads on us.UserID equals d.Seller
+                                where us.RoleID == 1005 && d.SellFor == "Paid"
+                                select d.PurchasedPrice).Distinct().Sum();
+                ViewBag.TotalEarnings = earnings;
+              
+
+                return View();
+            }
+        }
+        public ActionResult myprofile()
+        {
+            return View();
+        }
+        public ActionResult notedetails()
+        {
+            return View();
+        }
+        public ActionResult notesunderreview()
+        {
+            using (NotesMarketPlaceEntities DBobj = new NotesMarketPlaceEntities())
+            {
+                DBobj.Configuration.LazyLoadingEnabled = false;
+
+                var underReview = (from n in DBobj.Notes
+                                 join us in DBobj.Users on n.SellerID equals us.UserID
+                                 where n.Status == 4 || n.Status == 5 
+                                 join cat in DBobj.Categories on n.NotesCategory equals cat.CategoryID
+                                 join usr in DBobj.Users on n.SellerID equals usr.UserID
+                                 join st in DBobj.NotesStatus on n.Status equals st.StatusID
+                                 select new MyProgressNotes
+                                 {
+                                     SellerNotes = n,
+                                     Category = cat,
+                                     u = usr,
+                                     Status =st
+                                     
+
+                                 }).ToList();
+                ViewBag.notesUnderReview = underReview;
+                ViewBag.notesUnderReviewCount = underReview.Count();
+                return View();
+            }
+        }
+        public ActionResult publishednotes()
+        {
+            using (NotesMarketPlaceEntities DBobj = new NotesMarketPlaceEntities())
+            {
+                DBobj.Configuration.LazyLoadingEnabled = false;
+
+                var publish = (from n in DBobj.Notes
+                               join us in DBobj.Users on n.SellerID equals us.UserID
+                               where n.Status == 2
+                               join cat in DBobj.Categories on n.NotesCategory equals cat.CategoryID
+                               join usr in DBobj.Users on n.SellerID equals usr.UserID
+                               join st in DBobj.NotesStatus on n.Status equals st.StatusID
+                               join nat in DBobj.SellerNoteAttachment on n.NoteID equals nat.NoteID
+                               select new MyProgressNotes
+                               {
+                                   SellerNotes = n,
+                                   Category = cat,
+                                   u = usr,
+                                   Status = st,
+                                   noteattach = nat
+                               }).ToList();
+                ViewBag.publishNotes = publish;
+                ViewBag.publishNotesCount = publish.Count();
+
+                var numberofdownloads = (from n in DBobj.Notes
+                                         join d in DBobj.Downloads on n.NoteID equals d.NoteID
+                                         where n.Status == 2
+                                         join cat in DBobj.Categories on n.NotesCategory equals cat.CategoryID
+                                         join usr in DBobj.Users on n.SellerID equals usr.UserID
+                                         join st in DBobj.NotesStatus on n.Status equals st.StatusID
+                                         select new MyProgressNotes
+                                         {
+                                             SellerNotes = n,
+                                             Category = cat,
+                                             u = usr,
+                                             Status = st
+
+                                         }).ToList();
+                ViewBag.DownloadPublishedNotesCount = numberofdownloads.Count();
+
+                return View();
+            }
+        }
+        public ActionResult downloadNotes()
+        {
+            using (NotesMarketPlaceEntities DBobj = new NotesMarketPlaceEntities())
+            {
+                DBobj.Configuration.LazyLoadingEnabled = false;
+
+                
+                var download = (from down in DBobj.Downloads
+                                join uss in DBobj.Users on down.Downloader equals uss.UserID 
+                                where down.IsSellerHasAllowedDownload == true && down.IsActive == true
+                                join cat in DBobj.Categories on down.NoteCategory equals cat.CategoryID
+                                join nat in DBobj.SellerNoteAttachment on down.NoteID equals nat.NoteID
+                                select new MyProgressNotes
+                                {
+                                    downloadnote = down,
+                                    u = uss,
+                                    Category = cat,
+                                    noteattach = nat
+
+
+                                }).ToList();
+             
+                ViewBag.DownloadedNotes = download;
+                ViewBag.DownloadedNotesCount = download.Count();
+                return View();
+            }
+        }
+        public ActionResult rejectednotes()
+        {
+            using (NotesMarketPlaceEntities DBobj = new NotesMarketPlaceEntities())
+            {
+                DBobj.Configuration.LazyLoadingEnabled = false;
+
+                var reject = (from n in DBobj.Notes
+                               join us in DBobj.Users on n.SellerID equals us.UserID
+                               where n.Status == 3
+                               join cat in DBobj.Categories on n.NotesCategory equals cat.CategoryID
+                               join usr in DBobj.Users on n.SellerID equals usr.UserID
+                               join st in DBobj.NotesStatus on n.Status equals st.StatusID
+                               select new MyProgressNotes
+                               {
+                                   SellerNotes = n,
+                                   Category = cat,
+                                   u = usr,
+                                   Status = st
+                                  
+                               }).ToList();
+                ViewBag.rejectNotes = reject;
+                ViewBag.rejectNotesCount = reject.Count();
+                return View();
+            }
+        }
+        
+        public ActionResult spamreports()
+        {
+            return View();
+        }
+
+    }
+}

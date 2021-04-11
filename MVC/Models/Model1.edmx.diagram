@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c267859fff37458887f1e24088eed5ec" Name="Diagram1">
+        <EntityTypeShape EntityType="NotesMarketPlace.Categories" Width="1.5" PointX="0.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.ContactUs" Width="1.5" PointX="0.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.Country" Width="1.5" PointX="3.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.Downloads" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.Notes" Width="1.5" PointX="6" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.NotesStatus" Width="1.5" PointX="3.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.Reference" Width="1.5" PointX="3.75" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.SellerNoteAttachment" Width="1.5" PointX="8.25" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.SpamReports" Width="1.5" PointX="11.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.SystemConfigurations" Width="1.5" PointX="10.75" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.Type" Width="1.5" PointX="3.75" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.UserRoles" Width="1.5" PointX="1.5" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.Users" Width="1.5" PointX="3.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.UsersProfile" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NotesMarketPlace.UsersReviews" Width="1.5" PointX="8.25" PointY="5.875" IsExpanded="true" />
+        <AssociationConnector Association="NotesMarketPlace.FK_Downloads_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_Notes_Categories" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_Notes_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_UsersProfile_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_Downloads_Notes" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_Downloads_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_Downloads_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_SpamReports_Downloads" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_UsersReviews_Downloads" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_Notes_Notes" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_Notes_Notes1" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_Notes_Notes2" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_Notes_Notes3" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_Notes_NotesStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_Notes_Type" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_Notes_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_Notes_Users1" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_SellerNoteAttachment_Notes" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_SpamReports_Notes" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_UsersReviews_Notes" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_UsersProfile_Reference" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_SpamReports_SpamReports" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_SpamReports_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_Users_UserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="NotesMarketPlace.FK_UsersReviews_Users" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

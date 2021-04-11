@@ -1,0 +1,483 @@
+﻿@model NoteMarketPlace.Models.UserProfileModel
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Important Meta Tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Title -->
+    <title>User Profile -   Notes MarketPlace</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/Content/User/images/logo/favicon.ico">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="~/Content/User/css/font-awesome/css/fontawesome.min.css">
+
+    <!-- FontAwesome kit -->
+    <script src="https://kit.fontawesome.com/4fa77e6d3c.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="~/Content/User/css/bootstrap/bootstrap.min.css">
+
+    <!-- Custom css -->
+    <link rel="stylesheet" href="~/Content/User/css/style.css">
+
+    <!-- Responsive css -->
+    <link rel="stylesheet" href="~/Content/User/css/responsive.css">
+
+    
+
+</head>
+
+<body>
+
+    <section id="user-profile">
+
+        <!-- Header -->
+        <!-- Header -->
+        <div class="only-white-nav extra-style-nav">
+            <header class="site-header">
+                <div class="header-wrapper">
+
+                    <!-- Mobile Menu Open Button -->
+                    <span id="mobile-nav-open-btn">&#9776;</span>
+
+                    <div class="logo-wrapper">
+                        <a href="~/User/home" title="Site Logo">
+                            <img src="~/Content/User/images/logo/dark-logo.png" alt="Logo">
+                        </a>
+                    </div>
+                    <div class="navigation-wrapper">
+                        <nav class="main-nav">
+                            <ul class="menu-navigation">
+                                <li>
+                                    <a href="~/User/searchnotes">Search Notes</a>
+                                </li>
+                                <li>
+                                    <a href="~/User/dashboard">Sell Your Notes</a>
+                                </li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li>
+                                        <a href="~/User/buyerRequests">Buyer Requests</a>
+                                    </li>
+                                }
+                                <li>
+                                    <a href="~/User/faq">FAQ</a>
+                                </li>
+                                <li>
+                                    <a href="~/User/contactUs">Contact Us</a>
+                                </li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li class="logged-in-user-photo-li">
+                                        <div class="dropdown">
+                                            <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <div class="logged-in-user-photo">
+                                                    <img src="@Session["dpPath"]" alt="User Photo" class="rounded-circle">
+                                                </div>
+                                            </a>
+
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="~/User/userProfile">My Profile</a>
+                                                <a class="dropdown-item" href="~/User/myDownloads">My Downloads</a>
+                                                <a class="dropdown-item" href="~/User/mySoldNotes">My Sold Notes</a>
+                                                <a class="dropdown-item" href="~/User/myRejectedNotes">My Rejected Notes</a>
+                                                <a class="dropdown-item" href="~/User/changePassword">Change Password</a>
+                                                <a class="dropdown-item logout-btn-dropdown" href="/User/Logout">Logout</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+
+                                        <a class="btn btn-general btn-purple" href="/User/Logout" title="Download" role="button">Logout</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a class="btn btn-general btn-purple" href="/User/login" title="Download" role="button">Login</a>
+                                    </li>
+                                }
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <!-- Mobile Menu -->
+                    <div id="mobile-nav">
+                        <img class="logo-in-mobile-menu" src="~/Content/User/images/logo/dark-logo.png" alt="Notes Logo">
+                        <!-- Mobile Menu Close Button -->
+                        <span id="mobile-nav-close-btn">&times;</span>
+
+                        <div id="mobile-nav-content">
+                            <ul class="nav">
+                                <li>
+                                    <a href="~/User/searchNotes">Search Notes</a>
+                                </li>
+                                <li>
+                                    <a href="~/User/dashboard">Sell Your Notes</a>
+                                </li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li>
+                                        <a href="~/User/buyerRequests">Buyer Requests</a>
+                                    </li>
+                                }
+                                <li>
+                                    <a href="~/User/faq">FAQ</a>
+                                </li>
+                                <li>
+                                    <a href="~/User/contactUs">Contact Us</a>
+                                </li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li class=" logged-in-user-photo-li">
+                                        <div class="logged-in-user-photo">
+                                            <div class="dropdown">
+                                                <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <img src="@Session["dpPath"]" alt="User Photo" class="rounded-circle">
+                                                </a>
+
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    <a class="dropdown-item" href="~/User/userProfile">My Profile</a>
+                                                    <a class="dropdown-item" href="~/User/myDownloads">My Downloads</a>
+                                                    <a class="dropdown-item" href="~/User/mySoldNotes">My Sold Notes</a>
+                                                    <a class="dropdown-item" href="~/User/myRejectedNotes">My Rejected Notes</a>
+                                                    <a class="dropdown-item" href="~/User/changePassword">Change Password</a>
+                                                    <a class="dropdown-item logout-btn-dropdown" href="/User/Logout">Logout</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <a class="btn btn-general btn-purple" href="/User/Logout" title="Download" role="button">Logout</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a class="btn btn-general btn-purple" href="/User/login" title="Download" role="button">Login</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <!-- Header ends -->
+        <!-- Header ends -->
+        <!-- background -->
+        <div class="small-height-bg">
+            <p class="text-center">User Profile</p>
+        </div>
+        <!-- background -->
+        <!-- details conatiner -->
+        <div class="general-box">
+            <div class="content-box-lg">
+                <div class="container">
+                    <div class="row">
+                        <p class="section-heading">Basic Profile Details</p>
+                    </div>
+                    @ViewBag.Message ;
+                </div>
+
+                <div class="container">
+                    <div class="row">
+                        <form method="post" enctype="multipart/form-data">
+                            <div class="row">
+
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label class="info-label" for="up-firstname">First Name *</label>
+                                        @Html.TextBoxFor(x => x.FirstName, new { Value = @Session["FirstName"], @class = "form-control form-inbox", @id = "up-firstname", @placeholder = "Enter your first name" })
+                                        <div class="incorrect-password-label">
+                                            <p>
+                                                @Html.ValidationMessage("FirstName", new { @style = "color:red" })
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label class="info-label" for="up-lastname">Last Name *</label>
+                                        @Html.TextBoxFor(x => x.LastName, new { Value = @Session["LastName"], @class = "form-control form-inbox", @id = "up-lastname", @placeholder = "Enter your last name" })
+                                        <div class="incorrect-password-label">
+                                            <p>
+                                                @Html.ValidationMessage("LastName", new { @style = "color:red" })
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label class="info-label" for="up-email">Email *</label>
+                                        @if (Session["EmailID"] != null)
+                                        {
+                                            @Html.TextBoxFor(x => x.EmailId, new { Value = @Session["EmailID"], @class = "form-control form-inbox", @id = "upemail", @placeholder = "Enter your email address", @readonly = "readonly" })
+                                        }
+                                        else
+                                        {
+                                            @Html.TextBoxFor(x => x.EmailId, new { @class = "form-control form-inbox", id = "upemail", placeholder = "Enter your email address" })
+                                        }
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label class="info-label" for="up-dob">Date Of Birth</label>
+                                        @Html.TextBoxFor(x => x.DOB, new { @class = "form-control form-inbox date-picker", type = "Date", @id = "up-dob", placeholder = "Enter your date of birth" })
+                                        <!---- <div class="calendar">
+                                         <img class="calendar-img" src="~/Content/User/images/user-profile/calendar.png"
+                                              alt="eye">
+                                     </div> -->
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label class="info-label" for="up-gender">Gender</label>
+                                        @Html.DropDownListFor(x => x.Gender, new SelectList(ViewBag.gender, "Value", "Text"), "Select Gender", new { @class = "form-control form-inbox", @id = "up-gender" })
+
+
+                                        <div class="select-down-arrow">
+                                            <img class="select-down-arrow-img"
+                                                 src="~/Content/User/images/user-profile/down-arrow.png" alt="eye">
+                                        </div>
+                                        <div class="incorrect-password-label">
+                                            <p>
+                                                @Html.ValidationMessage("Gender", new { @style = "color:red" })
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2 col-sm-2">
+                                    <div class="form-group">
+                                        <label class="info-label" for="up-ccode">Code</label>
+                                        @Html.DropDownListFor(x => x.CountryCode, new SelectList(ViewBag.countrycode, "Value", "Text"), "Select Your Country Code", new { @class = "form-control form-inbox", id = "up-ccode" })
+
+                                        <div class="select-down-arrow">
+                                            <img class="select-down-arrow-img"
+                                                 src="~/Content/User/images/user-profile/down-arrow.png" alt="eye">
+                                        </div>
+                                        <div class="incorrect-password-label">
+                                            <p>
+                                                @Html.ValidationMessage("CountryCode", new { @style = "color:red" })
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 col-sm-4">
+                                    <div class="form-group">
+                                        <label class="info-label" for="exampleInputEmail1">Phone Number</label>
+                                        @Html.TextBoxFor(x => x.PhoneNo, new { @class = "form-control form-inbox", @id = "exampleInputEmail1", @placeholder = "Enter your phone number" })
+                                        <p>
+                                            @Html.ValidationMessage("PhoneNo", new { @style = "color:red" })
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label class="info-label" for="uploadProfilePicture">Profile Picture</label>
+                                        <div id="uploadProfilePicture" class="form-control form-inbox upload-input-box" onClick="document.getElementById('up-picture').click()" style="cursor: pointer;">
+                                            <img src="~/Content/User/images/user-profile/upload.png" alt="Upload Profile Picture">
+                                            <p>Upload a picture</p>
+                                        </div>
+                                        @Html.TextBoxFor(x => x.ProfilePic, new { @class = "form-control form-inbox upload-input-box", @id = "up-picture", type = "file", style = "display:none", name = "upload-display-picture" })
+                                    </div>
+                                </div>
+
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- details container -->
+        <!-- details conatiner -->
+        <div class="general-box">
+            <div class="content-box-lg">
+                <div class="container">
+                    <div class="row">
+                        <p class="section-heading">Address Details</p>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="row">
+
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label class="info-label" for="up-add1">Address Line 1 *</label>
+                                    @Html.TextBoxFor(x => x.Address1, new { @class = "form-control form-inbox", @id = "up-add1", @placeholder = "Enter your address" })
+                                    <p>
+                                        @Html.ValidationMessage("Address1", new { @style = "color:red" })
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label class="info-label" for="up-add2">Address Line 2</label>
+                                    @Html.TextBoxFor(x => x.Address2, new { @class = "form-control form-inbox", @id = "up-add2", @placeholder = "Enter your address" })
+                                    <p>
+                                        @Html.ValidationMessage("Address2", new { @style = "color:red" })
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label class="info-label" for="up-city">City *</label>
+                                    @Html.TextBoxFor(x => x.City, new { @class = "form-control form-inbox", @id = "up-city", @placeholder = "Enter your city" })
+                                    <p>
+                                        @Html.ValidationMessage("City", new { @style = "color:red" })
+                                    </p>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label class="info-label" for="up-state">State *</label>
+                                    @Html.TextBoxFor(x => x.State, new { @class = "form-control form-inbox", @id = "up-state", @placeholder = "Enter your state" })
+                                    <p>
+                                        @Html.ValidationMessage("State", new { @style = "color:red" })
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label class="info-label" for="up-zipcode">ZipCode *</label>
+                                    @Html.TextBoxFor(x => x.ZipCode, new { @class = "form-control form-inbox", @id = "up-zipcode", @placeholder = "Enter your zip code" })
+                                    <p>
+                                        @Html.ValidationMessage("ZipCode", new { @style = "color:red" })
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label class="info-label" for="up-country">Country *</label>
+                                    @Html.DropDownListFor(x => x.Country, new SelectList(ViewBag.countries, "Value", "Text"), "Select Your Country", new { @class = "form-control form-inbox", id = "up-country" })
+
+
+                                    <div class="select-down-arrow">
+                                        <img class="select-down-arrow-img"
+                                             src="~/Content/User/images/user-profile/down-arrow.png" alt="eye">
+
+                                    </div>
+                                    <div class="incorrect-password-label">
+                                        <p>
+                                            @Html.ValidationMessage("Country", new { @style = "color:red" })
+                                        </p>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- details container -->
+        <!-- details conatiner -->
+        <div class="general-box">
+            <div class="content-box-lg">
+                <div class="container">
+                    <div class="row">
+                        <p class="section-heading">University and College Information</p>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="row">
+
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label class="info-label" for="up-university">University</label>
+                                    @Html.TextBoxFor(x => x.University, new { @class = "form-control form-inbox", @id = "up-univeersity", @placeholder = "Enter your university" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    <label class="info-label" for="up-college">College</label>
+                                    @Html.TextBoxFor(x => x.College, new { @class = "form-control form-inbox", @id = "up-college", @placeholder = "Enter your college" })
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-btn">
+                                    <button type="submit" class="btn btn-general btn-purple">Submit</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- details container -->
+        <!-- Footer  -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-8 col-12 text-left">
+                        <p>Copyright &copy; TatvaSoft All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-6 col-sm-4 col-12 text-right">
+                        <ul class="social-list">
+                            <li><a class="facebook-img" href="#"><img src="~/Content/User/images/Homepage/facebook.png" alt=""></a></li>
+                            <li><a class="twitter-img" href="#"><img src="~/Content/User/images/Homepage/twitter.png" alt=""></a></li>
+                            <li><a class="linkedin-img" href="#"><img src="~/Content/User/images/Homepage/linkedin.png" alt=""></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer Ends -->
+    </section>
+
+
+    <!-- JQuery -->
+    <script src="~/Scripts/User/js/jquery.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <!-- Datetime Picker -->
+  <!----  <script src="~/Scripts/User/js/datetimepicker/jquery.datetimepicker.full.min.js"></script> -->
+
+    <!-- Bootstrap JS -->
+    <script src="~/Scripts/User/js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="~/Scripts/User/js/script.js"></script>
+
+</body>
+
+</html>

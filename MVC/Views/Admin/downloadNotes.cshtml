@@ -1,0 +1,403 @@
+﻿@using PagedList
+@using PagedList.Mvc
+
+@model NoteMarketPlace.Models.dnFilter
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <!-- Important Meta Tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <!-- Title -->
+    <title>Downloaded Notes - Notes MarketPlace</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/Content/Admin/images/logo/favicon.ico">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="~/Content/Admin/css/font-awesome/css/fontawesome.min.css">
+
+    <!-- FontAwesome kit -->
+    <script src="https://kit.fontawesome.com/4fa77e6d3c.js" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="~/Content/Admin/css/bootstrap/bootstrap.min.css">
+
+    <!-- Custom css -->
+    <link rel="stylesheet" href="~/Content/Admin/css/style.css">
+
+    <!-- Responsive css -->
+    <link rel="stylesheet" href="~/Content/Admin/css/responsive.css">
+
+    <script>
+      
+            window.history.forward();
+            function noBack() {
+                window.history.forward();
+            }
+   
+        function dnFilters() {
+
+            document.getElementById("searchForm").submit();
+
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <section id="downloaded-notes" class="admin-manage-page">
+
+        <!-- Header -->
+        <div class="only-white-nav extra-style-nav only-white-nav-with-mb">
+            <header class="site-header">
+                <div class="header-wrapper">
+
+                    <!-- Mobile Menu Open Button -->
+                    <span id="mobile-nav-open-btn">&#9776;</span>
+
+                    <div class="logo-wrapper">
+                        <a href="~/Admin/dashboard" title="Site Logo">
+                            <img src="~/Content/Admin/images/logo/dark-logo.png" alt="Logo">
+                        </a>
+                    </div>
+                    <div class="navigation-wrapper">
+                        <nav class="main-nav">
+                            <ul class="menu-navigation">
+                                <li>
+                                    <a href="~/Admin/dashboard">Dashboard</a>
+                                </li>
+                                <li>
+                                    <div class="dropdown notes-btn-dropdown">
+                                        <a role="button" id="notes-dropdown-lable" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Notes</a>
+
+                                        <div class="dropdown-menu" aria-labelledby="notes-dropdown-lable">
+                                            <a class="dropdown-item" href="~/Admin/notesUnderReview">Notes Under Review</a>
+                                            <a class="dropdown-item" href="~/Admin/publishedNotes">Published Notes</a>
+                                            <a class="dropdown-item" href="~/Admin/downloadNotes">Downloaded Notes</a>
+                                            <a class="dropdown-item" href="~/Admin/rejectedNotes">Rejected Notes</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="~/Admin/members">Members</a>
+                                </li>
+                                <li>
+                                    <div class="dropdown reports-btn-dropdown">
+                                        <a role="button" id="reports-dropdown-lable" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reports</a>
+
+                                        <div class="dropdown-menu" aria-labelledby="reports-dropdown-lable">
+                                            <a class="dropdown-item" href="~/Admin/spamReports">Spam Reports</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="dropdown settings-btn-dropdown">
+                                        <a role="button" id="settings-dropdown-lable" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
+
+                                        <div class="dropdown-menu" aria-labelledby="settings-dropdown-lable">
+                                            <a class="dropdown-item" href="~/Admin/manageSystemConfiguration">Manage System Configuration</a>
+                                            <a class="dropdown-item" href="~/Admin/manageAdministrator">Manage Administrator</a>
+                                            <a class="dropdown-item" href="~/Admin/manageCategory">Manage Category</a>
+                                            <a class="dropdown-item" href="~/Admin/manageType">Manage Type</a>
+                                            <a class="dropdown-item" href="~/Admin/manageCountry">Manage Countries</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="logged-in-user-photo-li">
+                                    <div class="dropdown user-picture-dropdown">
+                                        <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <div class="logged-in-user-photo">
+                                                <img src="~/Content/Admin/images/testimonial/customer-1.png" alt="User Photo" class="rounded-circle">
+                                            </div>
+                                        </a>
+
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                            <a class="dropdown-item" href="~/Admin/myProfile">Update Profile</a>
+                                            <a class="dropdown-item" href="~/Admin/changePassword">Change Password</a>
+                                            <a class="dropdown-item logout-btn-dropdown" href="~/Admin/Logout">Logout</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a class="btn btn-general btn-purple" href="~/Admin/Logout" title="Download" role="button">Logout</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <!-- Mobile Menu -->
+                    <div id="mobile-nav">
+                        <img class="logo-in-mobile-menu" src="~/Content/Admin/images/logo/dark-logo.png" alt="Notes Logo">
+                        <!-- Mobile Menu Close Button -->
+                        <span id="mobile-nav-close-btn">&times;</span>
+
+                        <div id="mobile-nav-content">
+                            <ul class="nav">
+                                <li>
+                                    <a href="~/Admin/dashboard">Dashboard</a>
+                                </li>
+                                <li>
+                                    <div class="dropdown notes-btn-dropdown">
+                                        <a role="button" id="notes-dropdown-lable" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Notes</a>
+
+                                        <div class="dropdown-menu" aria-labelledby="notes-dropdown-lable">
+                                            <a class="dropdown-item" href="~/Admin/notesUnderReview">Notes Under Review</a>
+                                            <a class="dropdown-item" href="~/Admin/publishedNotes">Published Notes</a>
+                                            <a class="dropdown-item" href="~/Admin/downloadNotes">Downloaded Notes</a>
+                                            <a class="dropdown-item" href="~/Admin/rejectedNotes">Rejected Notes</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a href="~/Admin/members">Members</a>
+                                </li>
+                                <li>
+                                    <div class="dropdown reports-btn-dropdown">
+                                        <a role="button" id="reports-dropdown-lable" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Reports</a>
+
+                                        <div class="dropdown-menu" aria-labelledby="reports-dropdown-lable">
+                                            <a class="dropdown-item" href="~/Admin/spamReports">Spam Reports</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="dropdown settings-btn-dropdown">
+                                        <a role="button" id="settings-dropdown-lable" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
+
+                                        <div class="dropdown-menu" aria-labelledby="settings-dropdown-lable">
+                                            <a class="dropdown-item" href="~/Admin/manageSystemConfiguration">Manage System Configuration</a>
+                                            <a class="dropdown-item" href="~/Admin/manageAdministrator">Manage Administrator</a>
+                                            <a class="dropdown-item" href="~/Admin/manageCategory">Manage Category</a>
+                                            <a class="dropdown-item" href="~/Admin/manageType">Manage Type</a>
+                                            <a class="dropdown-item" href="~/Admin/manageCountry">Manage Countries</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="logged-in-user-photo-li">
+                                    <div class="logged-in-user-photo">
+                                        <div class="dropdown">
+                                            <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img src="~/Content/Admin/images/testimonial/customer-1.png" alt="User Photo" class="rounded-circle">
+                                            </a>
+
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="~/Admin/myProfile">Update Profile</a>
+                                                <a class="dropdown-item" href="~/Admin/changePassword">Change Password</a>
+                                                <a class="dropdown-item logout-btn-dropdown" href="~/Admin/Logout">Logout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <a class="btn btn-general btn-purple" href="~/Admin/Logout" title="Download" role="button">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+        </div>
+        <!-- Header ends -->
+        <!-- DownloadNotes -->
+        @{
+            IPagedList<NoteMarketPlace.Models.MyProgressNotes> downloadnotes = ViewBag.DownloadedNotes;
+            int s = 0;
+        }
+    <div class="content-box-lg">
+        @using (Html.BeginForm("downloadNotes", "Admin", FormMethod.Get, new { @Id = "searchForm" }))
+        {
+            <div class="container">
+                <div class="row no-gutters">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-12 text-left box-heading-wrapper">
+                        <p class="box-heading">Downloaded Notes</p>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12 text-left">
+                        <div class="row no-gutters">
+
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                                <div class="form-group">
+                                    <label for="" class="info-label">Note</label>
+                                    @Html.DropDownListFor(x => x.Note, new SelectList(ViewBag.dnNote, "Value", "Text"), "Select note", new { @onchange = "dnFilters()", @class = "form-control input-box-style", id = "exampleFormContlect1" })
+                                    <div class="select-down-arrow"><img class="select-down-arrow-img" src="~/Content/Admin/images/Dashboard/down-arrow.png" alt="eye"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                                <div class="form-group">
+                                    <label for="" class="info-label">Seller</label>
+                                    @Html.DropDownListFor(x => x.Seller, new SelectList(ViewBag.dnSellers, "Value", "Text"), "Select seller", new { @onchange = "dnFilters()", @class = "form-control input-box-style", id = "exampleFormContlect2" })
+                                    <div class="select-down-arrow"><img class="select-down-arrow-img" src="~/Content/Admin/images/Dashboard/down-arrow.png" alt="eye"></div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                                <div class="form-group">
+                                    <label for="" class="info-label">Buyer</label>
+                                    @Html.DropDownListFor(x => x.Buyer, new SelectList(ViewBag.dnBuyers, "Value", "Text"), "Select buyer", new { @onchange = "dnFilters()", @class = "form-control input-box-style", id = "exampleFormContlect3" })
+                                    <div class="select-down-arrow"><img class="select-down-arrow-img" src="~/Content/Admin/images/Dashboard/down-arrow.png" alt="eye"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+
+                        <div class="row no-gutters general-search-bar-btn-wrapper">
+                            <div class="form-group has-search-bar">
+                                <span class="search-symbol"><img src="~/Content/Admin/images/Dashboard/search-icon.png" alt=""></span>
+                                <input type="text" name="dnsearch" class="form-control input-box-style search-notes-bar" id="example" placeholder="Search">
+                            </div>
+
+                            <button type="submit" class="btn btn-general btn-purple general-search-bar-btn">Search</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        }
+        </div>
+
+        <div class="container">
+
+            <div class="downloaded-notes-table general-table-responsive">
+                <div class="table-responsive-xl">
+
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col" class="text-center">sr no.</th>
+                                <th scope="col">Note title</th>
+                                <th scope="col">category</th>
+                                <th scope="col">Buyer</th>
+                                <th scope="col" class="text-center"></th>
+                                <th scope="col">Seller</th>
+                                <th scope="col"></th>
+                                <th scope="col">Sell Type</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Downloaded<br>Date/Time</th>
+                                <th scope="col" class="text-center"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @if (ViewBag.DownloadedNotesCount > 0)
+                            {
+                                foreach (var i in downloadnotes)
+                                {
+                                    s++;
+                                    <tr>
+                                        <td class="text-center">@s</td>
+                                        <td class="purple-td">@i.SellerNotes.NotesTitle</td>
+                                        <td>@i.Category.CategoryName</td>
+                                        <td>@i.u1.FirstName  @i.u1.LastName</td>
+                                        <td class="text-center">
+                                            <a href="/Admin/memberDetails/@i.u1.UserID"><img class="eye-img-in-table" src="~/Content/Admin/images/Dashboard/eye.png" alt="edit"></a>
+                                        </td>
+                                        <td>@i.u.FirstName @i.u.LastName</td>
+                                        <td class="text-center">
+                                            <a href="/Admin/memberDetails/@i.u.UserID"><img class="eye-img-in-table" src="~/Content/Admin/images/Dashboard/eye.png" alt="edit"></a>
+                                        </td>
+                                        <td>@i.SellerNotes.SellType</td>
+                                        <td>$@i.SellerNotes.SellPrice</td>
+                                        <td>@i.downloadnote.AttachmentDownloadedDate</td>
+                                        <td class="text-center visible-overflow-for-dropdown">
+                                            <div class="dropdown dropdown-dots-table">
+                                                <a href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <img class="dots-in-table" src="~/Content/Admin/images/Dashboard/dots.png" alt="edit">
+                                                </a>
+
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                    <a class="dropdown-item" href="#">Download Notes</a>
+                                                    <a class="dropdown-item" href="/User/noteDetails/@i.SellerNotes.NoteID">View More Details</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="11">
+                                        <center>
+                                            No Record Found!
+                                        </center>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+        </div>
+        <!-- published note table -->
+        <!-- pagination -->
+        <div class="pagination-section">
+            <div class="pagination-notes">
+                <div class="pagination-number">
+                    @Html.PagedListPager(downloadnotes, page => Url.Action("downloadNotes", new
+               {
+                   page,
+                   Search = Request.QueryString["dnSearch"]
+                   // SortOrder = Request.QueryString["SortOrder"]
+               })
+           , new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayPageCountAndCurrentLocation = true, MaximumPageNumbersToDisplay = 5 }
+           )
+                </div>
+              </div>
+            </div>
+                    <!-- pagination -->
+                    <!-- Footer  -->
+                    <footer>
+                        <div class="container">
+                            <div class="row no-gutters">
+
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-4 col-12 text-left">
+                                    <p class="version-footer">Version : 1.1.24</p>
+                                </div>
+
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-8 col-12 text-right">
+                                    <p class="copyright-footer">Copyright &copy; TatvaSoft All Rights Reserved.</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- Footer Ends -->
+
+    </section>
+
+
+    <!-- JQuery -->
+    <script src="~/Scripts/Admin/js/jquery.js"></script>
+
+    <!-- Production version -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="~/Scripts/Admin/js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="~/Scripts/Admin/js/script.js"></script>
+
+
+</body>
+
+</html>

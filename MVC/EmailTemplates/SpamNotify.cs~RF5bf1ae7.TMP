@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Net;
+using System.Net.Mail;
+
+namespace NoteMarketPlace.EmailTemplates
+{
+    public class SpamNotify
+    {
+        public static void Notify(String Membername, String SellerName, string NoteTitle)
+        {
+            var fromEmail = new MailAddress("nkvyas99@gmail.com", "Notes Marketplace"); //need system email
+            var toEmail = new MailAddress("vyaspratima301@gmail.com");
+            var fromEmailPassword = "Lovemaggi99";
+
+            string subject = Membername + " Reported an issue for " +  NoteTitle;
+
+
+            string msg = "Hello Admins," + "< br />";
+            msg += "We want to inform you that, " + " " + Membername + " " + "Reported an issue for  "+ SellerName + "'s Note with  " + NoteTitle + "< br />";
+            msg += "Please look at the notes and take required actions " + "< br />";
+            msg += "<br/><br/>Regards,<br/>";
+            msg += "NotesMarketPlace";
+
+        }
+    }
+}
